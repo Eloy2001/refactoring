@@ -7,7 +7,7 @@ public class Lloguer {
 	private int dies;
 	private Vehicle vehicle;
 	
-	/*public double quantitatPerLloguer() {
+	public double quantitatPerLloguer() {
     	double quantitat=0;
 	    switch (getVehicle().getCategoria()) {
 	        case Vehicle.BASIC:
@@ -29,7 +29,7 @@ public class Lloguer {
 	    
 	    return quantitat;
     }
-	*/
+	
 	public Lloguer(Date data, int dies, Vehicle vehicle) {
 		this.data = data;
 		this.dies = dies;
