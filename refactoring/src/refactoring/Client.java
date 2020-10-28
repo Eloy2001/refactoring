@@ -38,13 +38,11 @@ public class Client {
         return lloguers.contains(lloguer);
     }
 
-    public String informe() {
+
         //double total = 0; Exercici 15
         //int bonificacions = 0;
-        String resultat = "Informe de lloguers del client " +
-            getNom() +
-            " (" + getNif() + ")\n";
-        for (Lloguer lloguer: lloguers) {
+        
+        //for (Lloguer lloguer: lloguers) {
         	// double quantitat = quantitatPerLloguer(lloguer); //Exercici 6
         	//double quantitat = lloguer.quantitat(); //Exercici 7-10
             
@@ -52,18 +50,56 @@ public class Client {
         	//bonificacions += bonificacionsquantitatPerLloguer(lloguer); //Exercici 11
         	// bonificacions += lloguer.bonificacions(); //Exercici 12
             // composa els resultats d'aquest lloguer
-            resultat += "\t" +
+
+            //total += quantitat * 30; Exercici 15
+        //}
+
+        // afegeix informació final Exercici 15 i 16
+        //return resultat;
+    public String informe() {
+        return composaCapsalera() +composaDetall() + composaPeu();
+    }
+    
+    public String informeHTML() {
+        return composaCapsaleraHTML() +composaDetallHTML() + composaPeuHTML(); // Exercici 20
+    }
+    public String composaCapsaleraHTML() {
+    	return "<h1>Informe de lloguers</h1>"+"  	<p>Informe de lloguers del client <em>" + getNom() + "</em>  (<strong>" + getNif()+"</strong>)</p>";
+    }
+    public String composPeuHTML() {
+    	return "<p>Import a pagar: <em>" + importeTotal()+"€</em></p>" +
+    	"<p>Punts guanyats: <em>"+ importeBonificacions() +"</em></p>"
+    }
+    public composaDetallHTML() {
+    	String resultat = "<table>" + "<tr><td><strong>Marca</strong></td>" + "<td><strong>Model</strong></td>"+ "<td><strong>Import</strong></td></tr>";
+    		
+    	for (Lloguer lloguer: lloguers) {
+    		resultat += "\t" +
+            lloguer.getVehicle().getMarca() + "</td><td>"+
+            lloguer.getVehicle().getModel() + "</td><td>" +
+            (lloguer.quantitat() * 30) + "€" + "</td></td>";
+    }
+    	return resultat + "</table>";
+    }
+    public String composaCapsalera() {
+    	return "Informe de lloguers del client " +
+                getNom() +
+                " (" + getNif() + ")\n";
+    }
+    public String composaDetall() {
+        String resultat ="";
+        for (Lloguer lloguer: lloguers) {
+        		resultat += "\t" +
                 lloguer.getVehicle().getMarca() +
                 " " +
                 lloguer.getVehicle().getModel() + ": " +
                 (lloguer.quantitat() * 30) + "€" + "\n";
-            //total += quantitat * 30; Exercici 15
         }
-
-        // afegeix informació final Exercici 15 i 16
-        resultat += "Import a pagar: " + importeTotal() + "€\n" +
-            "Punts guanyats: " + importeBonificacions() + "\n";
         return resultat;
+    }
+    public String composaPeu() {
+    	return "Import a pagar: " + importeTotal() + "€\n" +
+                "Punts guanyats: " + importeBonificacions() + "\n";
     }
     public int importeBonificacions() {
     	int bonificacions = 0;
@@ -118,4 +154,5 @@ public class Client {
 	    
 	    return quantitat;
     }
+    
 }
