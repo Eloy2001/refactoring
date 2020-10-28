@@ -45,35 +45,12 @@ public class Client {
             getNom() +
             " (" + getNif() + ")\n";
         for (Lloguer lloguer: lloguers) {
-            double quantitat = lloguer.quantitatPerLloguer();
+        	// double quantitat = quantitatPerLloguer(lloguer); //Exercici 6
+        	double quantitat = lloguer.quantitat(); //Exercici 7-10
             
-            /*switch (lloguer.getVehicle().getCategoria()) {
-                case Vehicle.BASIC:
-                    quantitat += 3;
-                    if (lloguer.getDies() > 3) {
-                        quantitat += (lloguer.getDies() - 3) * 1.5;
-                    }
-                    break;
-                case Vehicle.GENERAL:
-                    quantitat += 4;
-                    if (lloguer.getDies() > 2) {
-                        quantitat += (lloguer.getDies() - 2) * 2.5;
-                    }
-                    break;
-                case Vehicle.LUXE:
-                    quantitat += lloguer.getDies() * 6;
-                    break;
-            }*/
-
             // afegeix lloguers freqüents
-            bonificacions ++;
-
-            // afegeix bonificació per dos dies de lloguer de Luxe
-            if (lloguer.getVehicle().getCategoria() == Vehicle.LUXE &&
-                    lloguer.getDies()>1 ) {
-                bonificacions ++;
-            }
-
+        	//bonificacions += bonificacionsquantitatPerLloguer(lloguer); //Exercici 11
+        	bonificacions += lloguer.bonificacions(); //Exercici 12
             // composa els resultats d'aquest lloguer
             resultat += "\t" +
                 lloguer.getVehicle().getMarca() +
@@ -88,9 +65,25 @@ public class Client {
             "Punts guanyats: " + bonificacions + "\n";
         return resultat;
     }
+    private Vehicle getVehicle() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+    
+    public int bonificacionsquantitatPerLloguer(Lloguer lloguer) {
+    	int bonificacions = 1;
+
+        // afegeix bonificació per dos dies de lloguer de Luxe
+        if (lloguer.getVehicle().getCategoria() == Vehicle.LUXE &&
+                lloguer.getDies()>1 ) {
+            bonificacions ++;
+        }
+        return bonificacions;
+    }
     
     public double quantitatPerLloguer(Lloguer lloguer) {
-    	double quantitat=0;
+    	double quantitat = 0; 
+    	// double 
 	    switch (getVehicle().getCategoria()) {
 	        case Vehicle.BASIC:
 	            quantitat += 3;
@@ -111,10 +104,4 @@ public class Client {
 	    
 	    return quantitat;
     }
-
-	private Vehicle getVehicle() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

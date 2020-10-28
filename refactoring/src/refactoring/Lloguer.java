@@ -7,7 +7,7 @@ public class Lloguer {
 	private int dies;
 	private Vehicle vehicle;
 	
-	public double quantitatPerLloguer() {
+	public double quantitat() {
     	double quantitat=0;
 	    switch (getVehicle().getCategoria()) {
 	        case Vehicle.BASIC:
@@ -41,7 +41,16 @@ public class Lloguer {
 		return data;
 	}
 
+    public int bonificacions() {
+    	int bonificacions = 1;
 
+        // afegeix bonificació per dos dies de lloguer de Luxe
+        if (getVehicle().getCategoria() == Vehicle.LUXE &&
+                getDies()>1 ) {
+            bonificacions ++;
+        }
+        return bonificacions;
+    }
 	public void setData(Date data) {
 		this.data = data;
 	}
