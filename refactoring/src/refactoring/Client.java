@@ -39,37 +39,51 @@ public class Client {
     }
 
     public String informe() {
-        double total = 0;
-        int bonificacions = 0;
+        //double total = 0; Exercici 15
+        //int bonificacions = 0;
         String resultat = "Informe de lloguers del client " +
             getNom() +
             " (" + getNif() + ")\n";
         for (Lloguer lloguer: lloguers) {
         	// double quantitat = quantitatPerLloguer(lloguer); //Exercici 6
-        	double quantitat = lloguer.quantitat(); //Exercici 7-10
+        	//double quantitat = lloguer.quantitat(); //Exercici 7-10
             
             // afegeix lloguers freqüents
         	//bonificacions += bonificacionsquantitatPerLloguer(lloguer); //Exercici 11
-        	bonificacions += lloguer.bonificacions(); //Exercici 12
+        	// bonificacions += lloguer.bonificacions(); //Exercici 12
             // composa els resultats d'aquest lloguer
             resultat += "\t" +
                 lloguer.getVehicle().getMarca() +
                 " " +
                 lloguer.getVehicle().getModel() + ": " +
-                (quantitat * 30) + "€" + "\n";
-            total += quantitat * 30;
+                (lloguer.quantitat() * 30) + "€" + "\n";
+            //total += quantitat * 30; Exercici 15
         }
 
-        // afegeix informació final
-        resultat += "Import a pagar: " + total + "€\n" +
-            "Punts guanyats: " + bonificacions + "\n";
+        // afegeix informació final Exercici 15 i 16
+        resultat += "Import a pagar: " + importeTotal() + "€\n" +
+            "Punts guanyats: " + importeBonificacions() + "\n";
         return resultat;
+    }
+    public int importeBonificacions() {
+    	int bonificacions = 0;
+    	for (Lloguer lloguer: lloguers) {
+    		bonificacions += lloguer.bonificacions(); //Exercici 12
+    	}
+    	return bonificacions;
     }
     private Vehicle getVehicle() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-    
+    public double importeTotal() { //Exercici 15
+    	double total =0.0;
+       	 for (Lloguer lloguer: lloguers) {
+       		 total += lloguer.quantitat() * 30;
+       	 }
+       	return total;
+       	 
+    }
     public int bonificacionsquantitatPerLloguer(Lloguer lloguer) {
     	int bonificacions = 1;
 
