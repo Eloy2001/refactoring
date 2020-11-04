@@ -61,16 +61,16 @@ public class Client {
     }
     
     public String informeHTML() {
-        return composaCapsaleraHTML() +composaDetallHTML() + composaPeuHTML(); // Exercici 20
+        return composaCapsaleraHTML() + composaDetallHTML() + composaPeuHTML(); // Exercici 20
     }
     public String composaCapsaleraHTML() {
     	return "<h1>Informe de lloguers</h1>"+"  	<p>Informe de lloguers del client <em>" + getNom() + "</em>  (<strong>" + getNif()+"</strong>)</p>";
     }
-    public String composPeuHTML() {
+    public String composaPeuHTML() {
     	return "<p>Import a pagar: <em>" + importeTotal()+"€</em></p>" +
-    	"<p>Punts guanyats: <em>"+ importeBonificacions() +"</em></p>"
+    	"<p>Punts guanyats: <em>"+ importeBonificacions() +"</em></p>";
     }
-    public composaDetallHTML() {
+    public String composaDetallHTML() {
     	String resultat = "<table>" + "<tr><td><strong>Marca</strong></td>" + "<td><strong>Model</strong></td>"+ "<td><strong>Import</strong></td></tr>";
     		
     	for (Lloguer lloguer: lloguers) {
